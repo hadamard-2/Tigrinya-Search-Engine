@@ -1,4 +1,5 @@
 tig_corpus/
+tig_search/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -64,7 +64,7 @@ body {
 }
 
 .left form .search-bar {
-    margin: 36px 0 20px 0;
+    margin: 36px 0 16px 0;
     padding: 9px 0 9px 22px;
 
     background-color: #FFF;
@@ -133,7 +133,10 @@ body {
 }
 
 .right .search-results {
+    height: 500px;
     width: 85%;
+
+    overflow-y: auto;
 
     display: flex;
     flex-direction: column;
