@@ -11,10 +11,10 @@ end_page = 41
 target_year = "2023"
 links = []
 
-# Path to the file where links will be stored
+
 links_file = "newspaper_links_2023.txt"
 
-# Check if the links file exists and is not empty
+
 if os.path.exists(links_file) and os.path.getsize(links_file) > 0:
     print("Loading links from file...")
     with open(links_file, "r") as file:
@@ -40,15 +40,15 @@ else:
     # Close the WebDriver
     driver.quit()
 
-    # Save the links to a file
+
     with open(links_file, "w") as file:
         for link in links:
             file.write(link + "\n")
 
-# Specify the directory where PDFs should be saved
-save_directory = "tig_corpus"  # Replace with the actual path
 
-# Ensure the save directory exists
+save_directory = "tig_corpus"
+
+
 os.makedirs(save_directory, exist_ok=True)
 
 # Extract and download PDFs
