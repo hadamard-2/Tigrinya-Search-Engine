@@ -1,6 +1,6 @@
-from helper_functions import transliterate, transcribe
-from preprocessing import TigMorphPreprocess
-import re
+from backend.helper_functions import *
+
+# from helper_functions import *
 
 
 class TigrinyaStemmer:
@@ -52,7 +52,11 @@ class TigrinyaStemmer:
                 stemmed_word = suffix_removed
             i += 1
 
-        return transcribe(stemmed_word)
+        try:
+            return transcribe(stemmed_word)
+        except:
+            print(f"Word: {word}\nStemmed Word: {stemmed_word}\b")
+            return word
 
     def remove_double_reduplication(self, word=""):
         if self.count_radicals(word) < 5:
@@ -77,7 +81,11 @@ class TigrinyaStemmer:
                 stemmed_word = stemmed_word[len(prefix_list[i]) :]
             i += 1
 
-        return transcribe(stemmed_word)
+        try:
+            return transcribe(stemmed_word)
+        except:
+            print(f"Word: {word}\nStemmed Word: {stemmed_word}\b")
+            return word
 
     def remove_suffix(self, word=""):
         stemmed_word = transliterate(word)
@@ -92,7 +100,11 @@ class TigrinyaStemmer:
                 stemmed_word = stemmed_word[: -len(suffix_list[i])]
             i += 1
 
-        return transcribe(stemmed_word)
+        try:
+            return transcribe(stemmed_word)
+        except:
+            print(f"Word: {word}\nStemmed Word: {stemmed_word}\b")
+            return word
 
     def remove_single_reduplication(self, word=""):
         if self.count_radicals(word) < 4:
@@ -124,22 +136,10 @@ class TigrinyaStemmer:
         return stemmed_word4
 
 
-def load_lists():
-    # load prefix list
-    with open("prefix_list.txt", "r", encoding="utf-8") as file:
-        prefix_list = file.read().splitlines()
-
-    # load prefix list
-    with open("suffix_list.txt", "r", encoding="utf-8") as file:
-        suffix_list = file.read().splitlines()
-
-    return prefix_list, suffix_list
-
-
 def main():
     prefix_suffix_pairs = [("መ", "ቲ"), ("መ", "ያ"), ("መ", "ኢ"), ("መ", "ታ"), ("መ", "ት")]
-
-    prefix_list, suffix_list = load_lists()
+    prefix_list = load_txt_file("lists/prefix_list.txt")
+    suffix_list = load_txt_file("lists/suffix_list.txt")
 
     stemmer = TigrinyaStemmer(prefix_suffix_pairs, prefix_list, suffix_list)
     preprocessor = TigMorphPreprocess()
@@ -174,4 +174,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # print("Hello"[2:5])
