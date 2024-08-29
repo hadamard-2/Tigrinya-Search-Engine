@@ -2,10 +2,8 @@ from collections import Counter
 import numpy as np
 import re
 
-from backend.helper_functions import *
-from backend.girma_stemmer import TigrinyaStemmer
-# from helper_functions import *
-# from girma_stemmer import TigrinyaStemmer
+from .helper_functions import *
+from .girma_stemmer import TigrinyaStemmer
 
 
 class TigMorphPreprocess:
